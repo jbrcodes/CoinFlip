@@ -1,25 +1,31 @@
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import CoinFlipper from './components/CoinFlipper';
+import CoinImages from './CoinImages';
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [currency, setCurrency] = useState('Brazil');
+
+    function handleChange(event) {
+        setCurrency(event.target.value);
+    }
+
+    return (
+        <div className="App">
+            <h1>¡Coin Flip!</h1>
+
+            Currency:
+            {' '}
+            <select onChange={handleChange}>
+                <option>Brazil</option>
+                <option>Norway</option>
+                <option>US</option>
+            </select>
+
+            <CoinFlipper images={CoinImages[currency]} />
+        </div>
+    );
 }
 
 export default App;
